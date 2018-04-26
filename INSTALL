@@ -1,0 +1,82 @@
+Installation
+
+
+1. Öffne die Datei „cfg.php“ aus dem ordner „PHP“ mit einem Editor (z.B. Notepad++) und passe die Werte an.
+Beachte hierbei auch die Informationen in den PHP-Kommentaren.
+
+2. Lade die Dateien aus dem Ordner „PHP“ auf deinen Webserver.
+
+3. Gebe dem gesamten Ordner mit den hochgeladenen Dateien CHMOD 777 (in Filezilla: Rechtsklick auf den Ordner → Dateiberechtigungen → 777 → Unterverzeichnisse einbeziehen).
+
+4. Importiere die Datei „db.sql“ in deine MySQL-Datenbank.
+
+5. Ersetze die Dateien „support_client.lua“ und „support_server.lua“ im Ordner „support“ in deinem Reallife-Script durch die gleichnamigen Dateien aus dem Ordner „LUA“.
+
+6. Kopiere die Datei „export.lua“ aus dem Ordner „LUA“ in dein Reallife-Script, und passe den Pfad zu den Logs an.
+
+7. Füge folgendes in die Datei „meta.xml“ aus deinem Reallife-Script hinzu.
+
+<script src="export.lua" type="server" />
+<export function="getLocationName" http="true" />
+<export function="getLogContent" http="true" />
+<export function="listAllPlayers" http="true" />
+<export function="kickPlayerWeb" http="true" />
+<export function="permaBanWeb" http="true" />
+<export function="timeBanWeb" http="true" />
+<export function="unbanWeb" http="true" />
+<export function="makePlayerScreenshot" http="true" />
+<export function="getScreenResult" http="true" />
+<export function="sendMsgToAdmins" http="true" />
+<export function="sendMsgToPlayer" http="true" />
+
+Vergiss nicht, evtl. den Pfad zur „export.lua“ anzupassen.
+
+
+
+Nun ist das Control-Panel einsatzbereit!
+
+
+
+
+
+
+
+Informationen zu dem TS3-Funktionen:
+Die TS3-Synchronisierung macht es möglich dem Spieler die Gruppen auf dem Teamspeakserver automatisch zuzuweisen.
+Jeder Spieler hat die Möglichkeit eine Teamspeak-UID im UCP unter den Einstellungen hinzuzufügen.
+Spieler mit einer eingetragenen UID werden einer „Freigeschaltet“-Gruppe hinzugefügt.
+Dieser „Freigeschaltet“-Gruppe kannst Du dann dann Rechte zuweisen (bsp. Channel join power, poke, pm etc.).
+Der Gast-Gruppe sollten dann Rechte wie Channel Joinen, Anstupsen, Nachrichten verschicken etc. entzogen werden.
+Weiterhin hast Du die Möglichkeit Deine Spieler automatisch in die Fraktions-Gruppen zuzuweisen.
+
+WICHTIGE Info: 
+Um die TS3-Synchronisation auszuführen, muss ein Cronjob erstellt werden, der das script aufruft.
+Unter Linux geht das wie folgt:
+
+„crontab -e“ in der Konsole aufrufen, und folgendes am ende einfügen:
+
+*/1 * * * * wget -q http://userpaneladresse/cronjob.php
+
+Die „1“ steht für die Minuten. Dementsprechend würde der Cronjob alle 60 Sekunden ausgeführt werden.
+
+Wenn du keinen vServer oder Dedicated-Server hast, kannst Du einen Online-Dienst nutzen.
+Dazu einfach Googlen: https://www.google.de/search?q=cronjob+online+anbieter
+
+
+
+
+
+
+
+
+
+PayPal Zahlung testen:
+
+Um die Zahlung sowie den IPN (Instant Payment Notifier) zu testen wird ein PayPal Developer Business- und Personal-Account benötigt.
+Diese können hier: https://developer.paypal.com/webapps/developer/applications/accounts erstellt werden.
+
+In der cfg.php muss nun als PayPal Email die E-Mail Adresse des "Business-Account" eingetragen werden.
+Nun kann man den PayPal Zahlungs-Button testen. Auf der PayPal Zahlungsseite kann man sich dann mit dem "Personal-Account" einloggen, und den Betrag zahlen.
+Nach der Zahlung sollte PayPal nun das IPN-Script (s.h. /paypal/ipn.php) aufrufen, das IPN Script überprüft die Zahlung, und sofern alles O.K. ist schreibt es die Coins gut. 
+
+Hat das ganze Funtioniert kann man den Sandbox-Mode deaktivieren, und seine PayPal E-Mail Adresse eintragen.
