@@ -31,7 +31,7 @@ $intern = false;
 						$exIP = explode('.', $_SERVER['REMOTE_ADDR']);
 						$IPb = $exIP[0].".".$exIP[1];
 						
-						$auth = hash('sha256', $pw.$name.$salt.$exIP);
+						$auth = hash('sha256', $pw.$name.$salt.$IPb);
 						setcookie("cpauth", $auth, time()+60*60*24*365);
 						setcookie("cpuser", $id, time()+60*60*24*365);
 						

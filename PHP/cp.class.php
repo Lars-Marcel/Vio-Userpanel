@@ -59,7 +59,7 @@ class CP {
 					
 					$exIP		= explode('.', $_SERVER['REMOTE_ADDR']);
 					$IPb		= $exIP[0].".".$exIP[1];
-					$cookie		= hash('sha256', $pw.$name.$salt.$exIP);
+					$cookie		= hash('sha256', $pw.$name.$salt.$IPb);
 					
 					if ($_COOKIE['cpauth'] == $cookie) {
 						return true;
