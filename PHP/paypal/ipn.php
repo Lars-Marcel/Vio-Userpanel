@@ -16,7 +16,7 @@ define("LOG_FILE", "../logs/paypal.log");
 	}
 	
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://www'.$paypalmode.'.paypal.com/cgi-bin/webscr');
+	curl_setopt($ch, CURLOPT_URL, 'https://ipnpb'.$paypalmode.'.paypal.com/cgi-bin/webscr');
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
