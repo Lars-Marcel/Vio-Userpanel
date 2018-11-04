@@ -30,7 +30,7 @@ if (!$mySQLcon->connect_errno) {
 	$r1 = substr(decoct(fileperms("index.php")), -3);
 	$r2	= substr(decoct(fileperms("cronjob.php")), -3);
 	$r3 = substr(decoct(fileperms("paypal/ipn.php")), -3);
-	if (($r1 == 777 || $r1 == 755) && ($r2 == 777 || $r2 == 755) && ($r3 == 777 || $r3 == 755)) {
+	if (($r1 == 777 || $r1 == 755) && ($r2 == 777 || $r2 == 755) && ($r3 == 777 || $r3 == 755) || (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')) {
 		$page = false;
 		$intern = true;
 		
